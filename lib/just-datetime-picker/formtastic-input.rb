@@ -9,6 +9,7 @@ module Formtastic
         ["12 PM", 12],["01 PM", 13],["02 PM", 14],["03 PM", 15],
         ["04 PM", 16],["05 PM", 17],["06 PM", 18],["07 PM", 19],
         ["08 PM", 20],["09 PM", 21],["10 PM", 22],["11 PM", 23]].freeze
+      MINUTE_OPTIONS = (0..59).to_a
 
       def to_html
         input_wrapping do
@@ -40,7 +41,7 @@ module Formtastic
 
           builder.select("#{method}_time_hour", AMPM_TIME_OPTIONS, input_html_options.merge({ :class => "just-datetime-picker-field just-datetime-picker-time just-datetime-picker-time-hour", :value => hour_value })) <<
           ":" <<
-          builder.text_field("#{method}_time_minute", input_html_options.merge({ :class => "just-datetime-picker-field just-datetime-picker-time just-datetime-picker-time-minute", :value => minute_value, :maxlength => 2, :size => 2 }))
+          builder.select("#{method}_time_minute", MINUTE_OPTIONS, input_html_options.merge({ :class => "just-datetime-picker-field just-datetime-picker-time just-datetime-picker-time-minute", :value => minute_value }))
         end
       end
     end
